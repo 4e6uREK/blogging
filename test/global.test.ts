@@ -15,7 +15,7 @@ const port : number = process.env.PORT ? Number.parseInt(process.env.PORT) : 500
 let server : Server;
 
 beforeAll(async() => {
-    child_process.execSync('./script/clean.sh');
+    child_process.execSync('./script/prepare.sh');
 });
 
 afterAll(async() => {

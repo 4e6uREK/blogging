@@ -1,0 +1,14 @@
+# PostgreSQL instance for development
+
+version: '3'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 127.0.0.1:5432:5432
+      - "[::1]:5432:5432"
