@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model posts {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  title      String   @db.VarChar(255)
+  content    String   @db.VarChar(255)
+  is_hidden  Boolean  @default(false)
+  created_at DateTime @default(now()) @db.Date
+  updated_at DateTime @default(now()) @db.Date
+  users      users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([user_id, title, content])
+}
+
+model users {
+  id            Int       @id @default(autoincrement())
+  type          user_type @default(blogger)
+  name          String    @unique @db.VarChar(255)
+  email         String    @unique @db.VarChar(255)
+  password_hash String    @db.VarChar(255)
+  created_at    DateTime  @default(now()) @db.Date
+  updated_at    DateTime  @default(now()) @db.Date
+  jwt           jwt?
+  posts         posts[]
+}
+
+model jwt {
+  user_id       Int    @id @unique(map: "jwt_users_id_key")
+  refresh_token String @db.VarChar(255)
+  users         users  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+enum user_type {
+  blogger
+  admin
+}
