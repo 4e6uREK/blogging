@@ -2,14 +2,14 @@
 
 ## Features
 1. Two types of users: admin and blogger
-2. Authentication done using *JWT* technology
-3. *bloggers* can create posts.
-4. *bloggers* can update posts.
-5. *bloggers* can see their posts whether they're public or hidden
-6. *bloggers* can see posts of other bloggers as long as they're public
-7. *admins* can do all from above
-8. *admins* can see all posts of all bloggers
-9. *admins* can remove any post
+2. Authentication done using **JWT** technology
+3. **bloggers** can create posts.
+4. **bloggers** can update posts.
+5. **bloggers** can see their posts whether they're public or hidden
+6. **bloggers** can see posts of other bloggers as long as they're public
+7. **admins** can do all from above
+8. **admins** can see all posts of all bloggers
+9. **admins** can remove any post
 
 ## Technologies used
 1. JWT
@@ -29,6 +29,7 @@ sh script/start_db.sh
 ```
 Next in root directory run:
 ```shell
+export POSTGRES_HOSTNAME=127.0.0.1
 npm run full-coverage
 ```
 Done...
